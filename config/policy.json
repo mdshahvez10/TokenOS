@@ -1,0 +1,26 @@
+{
+  "version": "heuristic-v1",
+  "max_steps": 8,
+  "input_budget": 6000,
+  "output_reserve": 1200,
+  "context_window": 100000,
+  "max_candidates": 100,
+  "tool_top_k": 6,
+  "rag_top_k": 6,
+  "recent_steps": 2,
+  "chunk_words": 100,
+  "chunk_overlap": 20,
+  "cache_ttl": 300,
+  "result_characters": 2000,
+  "max_result_bytes": 1000000,
+  "max_document_characters": 200000,
+  "max_history_characters": 200000,
+  "tool_timeout": 15.0,
+  "weights": {
+    "context_memory": 0.15,
+    "rag": 0.3,
+    "tool_schemas": 0.25,
+    "tool_results": 0.2,
+    "trajectory": 0.1
+  }
+}

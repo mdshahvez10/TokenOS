@@ -1,0 +1,8 @@
+{
+  "backend": "memory",
+  "operation": "reserve+dispatch+settle",
+  "iterations": 1000,
+  "median_ms": 0.0939565,
+  "p95_ms": 0.201664,
+  "warning": "Local serial microbenchmark; not PostgreSQL or provider latency"
+}

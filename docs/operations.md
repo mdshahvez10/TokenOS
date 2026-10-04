@@ -1,0 +1,14 @@
+# Operations and deployment boundaries
+Use one trusted workspace per deployment. The shared API key authenticates access but does not isolate tenants; task IDs are not authorization boundaries between key holders. Raw history, model answers and tool artifacts are stored in plaintext JSON. Define encryption, access controls, retention, backups and deletion before sensitive data use.
+
+The API executes tasks synchronously. Client timeout does not imply no effect; inspect the same task ID. Duplicate completed requests return the prior result, while changed/running requests conflict. Unknown model usage keeps its reservation; reconcile from provider billing/usage before settling. Do not release dispatched/unknown holds simply to regain budget. Side-effect tool operation claims prevent blind retries. Sandbox return IDs are task-scoped, not globally unique business transactions. External MCP writes are blocked.
+
+An interrupted running task has no automatic durable graph resume. PostgreSQL persists records, not an executable checkpoint. Inspect artifacts and effects, reconcile usage, then explicitly decide whether to submit a new task. Do not automatically replay operations. Memory mode is a local demonstration only.
+
+Concurrency is bounded per process, not cluster-wide; database row locks serialize ledger mutations. Set connection pools relative to worker count. For multi-user load add authenticated tenant keys, bounded admission queues, global quotas, task workers and recovery leases. Token and document limits apply after HTTP body parsing, so enforce transport request sizes and rate limits at a reverse proxy.
+
+RAG uses exact vector scan with deterministic lexical hashes. At large corpus sizes use evaluated embeddings, indexing and tenant filters. Candidate caps and schema top-k can omit required tools; monitor recall before scaling catalogs. MCP discovery paginates but currently stores the full configured catalog; bound server catalogs operationally. Full tool responses are materialized before storage limits are checked; use controlled servers and transport response limits for untrusted services.
+
+TTL expiry prevents cache reuse but rows remain until operational cleanup. Model estimates and result-size bounds are not a hard total RAM bound. The current release does not implement semantic response caching, learned policies, message brokers, billing enforcement or automatic retries.
+
+Run migrations with a deployment role before API workers. Checksums detect edited applied SQL, advisory locks serialize migrators, and all pending migrations run in one transaction. Back up before schema changes. Container image tags and dependencies should be reviewed and pinned by digest for your deployment. CI includes a container build and PostgreSQL test job; execution in the user's CI is still required.

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tokenos"
+version = "0.2.0"
+description = "Auditable token accounting and atomic budget admission for LLM agents"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3", "asyncpg>=0.30,<1", "langgraph>=1,<2",
+  "langchain-core>=1,<2", "structlog>=25,<27", "opentelemetry-api>=1.30,<2",
+  "httpx[socks]>=0.28,<1", "mcp>=1.20,<2", "streamlit>=1.45,<2", "jsonschema>=4.23,<5",
+  "opentelemetry-sdk>=1.30,<2", "opentelemetry-exporter-otlp-proto-http>=1.30,<2"
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "httpx>=0.28,<1", "ruff>=0.11,<1", "mypy>=1.15,<2", "asyncpg-stubs>=0.30", "types-jsonschema>=4"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["postgres: requires TOKENOS_TEST_DATABASE_URL pointing to a disposable PostgreSQL database"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+files = ["src"]

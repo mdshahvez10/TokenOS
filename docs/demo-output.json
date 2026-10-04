@@ -1,0 +1,170 @@
+{
+  "notice": "SIMULATED usage; this is not a token-savings experiment",
+  "before": {
+    "spec": {
+      "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+      "budget_tokens": 1000,
+      "context_window": 500,
+      "model_id": "tokenos-simulator-v1",
+      "policy_version": "baseline-v0",
+      "rates": null
+    },
+    "spent_tokens": 0,
+    "reserved_tokens": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_input_tokens": 0,
+    "reasoning_tokens": 0,
+    "cost": null,
+    "breached": false,
+    "version": 0,
+    "available_tokens": 1000
+  },
+  "result": {
+    "text": "Simulated response: accounting works.",
+    "usage": {
+      "input_tokens": 31,
+      "output_tokens": 37,
+      "cached_input_tokens": 0,
+      "reasoning_tokens": 0,
+      "source": "simulated"
+    }
+  },
+  "after": {
+    "spec": {
+      "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+      "budget_tokens": 1000,
+      "context_window": 500,
+      "model_id": "tokenos-simulator-v1",
+      "policy_version": "baseline-v0",
+      "rates": null
+    },
+    "spent_tokens": 68,
+    "reserved_tokens": 0,
+    "input_tokens": 31,
+    "output_tokens": 37,
+    "cached_input_tokens": 0,
+    "reasoning_tokens": 0,
+    "cost": null,
+    "breached": false,
+    "version": 3,
+    "available_tokens": 932
+  },
+  "events": [
+    {
+      "event_id": "a5ed7686-3d5b-4ac5-b78a-de84eb640b2d",
+      "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+      "reservation_id": null,
+      "version": 0,
+      "kind": "created",
+      "at": "2026-09-16T03:35:45.460053Z",
+      "payload": {
+        "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+        "budget_tokens": 1000,
+        "context_window": 500,
+        "model_id": "tokenos-simulator-v1",
+        "policy_version": "baseline-v0",
+        "rates": null
+      }
+    },
+    {
+      "event_id": "dd741e34-92be-4055-8201-ad2e4a14e6e0",
+      "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+      "reservation_id": "251023d7-02a0-43ce-9e2d-dcd0c225cf05",
+      "version": 1,
+      "kind": "reserved",
+      "at": "2026-09-16T03:35:45.467039Z",
+      "payload": {
+        "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+        "spec": {
+          "reservation_id": "251023d7-02a0-43ce-9e2d-dcd0c225cf05",
+          "request_digest": "8e0276e372b572864c9bb11ff2a56d5478c532061575afd7cf2c85a08a47ce34",
+          "components": {
+            "system": 0,
+            "context_memory": 0,
+            "rag": 0,
+            "tool_schemas": 0,
+            "tool_results": 0,
+            "trajectory": 0,
+            "user": 23,
+            "overhead": 8
+          },
+          "max_output_tokens": 100,
+          "safety_tokens": 32,
+          "purpose": "baseline"
+        },
+        "state": "reserved",
+        "usage": null,
+        "estimate_exceeded": false
+      }
+    },
+    {
+      "event_id": "05d06e0f-07f5-4092-b677-cc415c32886c",
+      "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+      "reservation_id": "251023d7-02a0-43ce-9e2d-dcd0c225cf05",
+      "version": 2,
+      "kind": "dispatched",
+      "at": "2026-09-16T03:35:45.467307Z",
+      "payload": {
+        "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+        "spec": {
+          "reservation_id": "251023d7-02a0-43ce-9e2d-dcd0c225cf05",
+          "request_digest": "8e0276e372b572864c9bb11ff2a56d5478c532061575afd7cf2c85a08a47ce34",
+          "components": {
+            "system": 0,
+            "context_memory": 0,
+            "rag": 0,
+            "tool_schemas": 0,
+            "tool_results": 0,
+            "trajectory": 0,
+            "user": 23,
+            "overhead": 8
+          },
+          "max_output_tokens": 100,
+          "safety_tokens": 32,
+          "purpose": "baseline"
+        },
+        "state": "dispatched",
+        "usage": null,
+        "estimate_exceeded": false
+      }
+    },
+    {
+      "event_id": "a14bcda6-6ec1-43a0-b831-053dbdb3fb26",
+      "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+      "reservation_id": "251023d7-02a0-43ce-9e2d-dcd0c225cf05",
+      "version": 3,
+      "kind": "settled",
+      "at": "2026-09-16T03:35:45.467441Z",
+      "payload": {
+        "run_id": "2ea0619c-0151-4a90-8c9c-f584f69b8d84",
+        "spec": {
+          "reservation_id": "251023d7-02a0-43ce-9e2d-dcd0c225cf05",
+          "request_digest": "8e0276e372b572864c9bb11ff2a56d5478c532061575afd7cf2c85a08a47ce34",
+          "components": {
+            "system": 0,
+            "context_memory": 0,
+            "rag": 0,
+            "tool_schemas": 0,
+            "tool_results": 0,
+            "trajectory": 0,
+            "user": 23,
+            "overhead": 8
+          },
+          "max_output_tokens": 100,
+          "safety_tokens": 32,
+          "purpose": "baseline"
+        },
+        "state": "settled",
+        "usage": {
+          "input_tokens": 31,
+          "output_tokens": 37,
+          "cached_input_tokens": 0,
+          "reasoning_tokens": 0,
+          "source": "simulated"
+        },
+        "estimate_exceeded": false
+      }
+    }
+  ]
+}

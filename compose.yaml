@@ -1,0 +1,62 @@
+services:
+  db:
+    image: ${TOKENOS_POSTGRES_IMAGE:-pgvector/pgvector:pg17}
+    environment:
+      POSTGRES_DB: tokenos
+      POSTGRES_USER: tokenos
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run python scripts/init_env.py first}
+    ports:
+      - "127.0.0.1:${TOKENOS_DB_PORT:-5432}:5432"
+    volumes:
+      - tokenos_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tokenos -d tokenos"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  migrate:
+    build: .
+    env_file: .env
+    environment:
+      TOKENOS_DATABASE_URL: postgresql://tokenos:${POSTGRES_PASSWORD}@db:5432/tokenos
+    command: ["python", "scripts/migrate.py"]
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    build: .
+    env_file: .env
+    environment:
+      TOKENOS_BACKEND: postgres
+      TOKENOS_DATABASE_URL: postgresql://tokenos:${POSTGRES_PASSWORD}@db:5432/tokenos
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:${TOKENOS_API_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "scripts/healthcheck.py"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+  dashboard:
+    build: .
+    env_file: .env
+    environment:
+      TOKENOS_API_URL: http://api:8000
+    command: ["streamlit", "run", "dashboard/app.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+    ports:
+      - "127.0.0.1:${TOKENOS_UI_PORT:-8501}:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  tokenos_db:
+

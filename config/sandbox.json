@@ -1,0 +1,36 @@
+{
+  "policy": {
+    "window_days": 30,
+    "excluded_categories": [
+      "digital"
+    ]
+  },
+  "orders": [
+    {
+      "order_id": "ORD100",
+      "status": "delivered",
+      "days_since_delivery": 7,
+      "category": "physical"
+    },
+    {
+      "order_id": "ORD101",
+      "status": "delivered",
+      "days_since_delivery": 45,
+      "category": "physical"
+    },
+    {
+      "order_id": "ORD102",
+      "status": "delivered",
+      "days_since_delivery": 4,
+      "category": "digital"
+    },
+    {
+      "order_id": "ORD103",
+      "status": "shipped",
+      "days_since_delivery": 0,
+      "category": "physical"
+    }
+  ],
+  "distractor_tools": 24,
+  "policy_text": "Physical items may be returned within 30 days after delivery. The order must have delivered status. Digital items cannot be returned. For an eligible order, create a return request using its order_id. Never create a return for an item that is still in transit."
+}
