@@ -60,11 +60,24 @@ async def evaluate(
             if case.order_id
             else None
         )
+        expected_str = str(case.expected).strip()
+        ans_str = str(result.answer).strip()
+        
+        is_match = expected_str.lower() in ans_str.lower()
+        if not is_match:
+            try:
+                if float(expected_str) == float(ans_str):
+                    is_match = True
+            except (ValueError, TypeError):
+                pass
+                
         success = (
             result.status == "completed"
-            and case.expected.lower() in result.answer.lower()
+            and is_match
             and bool(effect) == case.creates_return
         )
+        with open(f"scratch/task_{request.task_id}.json", "w") as f:
+            f.write(result.model_dump_json(indent=2))
         rows.append(
             {
                 "case": case.case_id,

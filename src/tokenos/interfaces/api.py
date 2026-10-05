@@ -41,7 +41,7 @@ from tokenos.infrastructure.settings import Settings
 from tokenos.infrastructure.telemetry import configure
 from tokenos.runtime.api import router
 from tokenos.runtime.engine import AgentRuntime
-from tokenos.runtime.providers import GeminiModel, SandboxAgentModel
+from tokenos.runtime.providers import GeminiModel, QwenModel, SandboxAgentModel
 from tokenos.runtime.seed import seed
 from tokenos.runtime.storage import MemoryCorpus, MemoryRecords, PostgresCorpus, PostgresRecords
 from tokenos.runtime.tools import MCPGateway
@@ -107,6 +107,12 @@ def create_app(
             runtime_model = (
                 SandboxAgentModel()
                 if config.runtime_provider == "sandbox"
+                else QwenModel(
+                    client,
+                    config.qwen_model_id,
+                    config.qwen_api_key.get_secret_value() if config.qwen_api_key else "",
+                )
+                if config.runtime_provider == "qwen"
                 else GeminiModel(
                     client,
                     config.gemini_model or "",

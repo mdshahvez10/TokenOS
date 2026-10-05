@@ -1,0 +1,231 @@
+{
+  "request": {
+    "task_id": "c8aaefc9-0502-4481-9aa0-80ac05231cde",
+    "query": "Calculate 12 + 7",
+    "history": [],
+    "mode": "fixed",
+    "budget_tokens": 100000,
+    "ablations": {
+      "full_memory": false,
+      "all_tools": false,
+      "fixed_rag": false,
+      "full_trajectory": false,
+      "no_cache": true,
+      "fixed_workflow": false
+    }
+  },
+  "status": "completed",
+  "answer": "19",
+  "evidence_ids": [],
+  "observations": [
+    {
+      "step": 0,
+      "tool": "calculator",
+      "arguments": {
+        "a": 12,
+        "b": 7,
+        "operator": "add"
+      },
+      "result": {
+        "value": 19.0
+      },
+      "artifact_id": "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:0",
+      "error": false,
+      "cache_hit": false
+    },
+    {
+      "step": 1,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: ['return-policy:f594070cedfd:0']"
+      },
+      "artifact_id": "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:1",
+      "error": true,
+      "cache_hit": false
+    },
+    {
+      "step": 2,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: ['return-policy:f594070cedfd:0']"
+      },
+      "artifact_id": "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:2",
+      "error": true,
+      "cache_hit": false
+    }
+  ],
+  "decisions": [
+    {
+      "step": 0,
+      "workflow": "react",
+      "available": 100000,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 812,
+        "rag": 1624,
+        "tool_schemas": 1354,
+        "tool_results": 1083,
+        "trajectory": 541
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 408,
+        "tool_schemas": 1146,
+        "tool_results": 0,
+        "trajectory": 0
+      },
+      "selected_ids": [
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_12",
+        "catalog_archive_7",
+        "return-policy:f594070cedfd:0"
+      ],
+      "omitted_ids": [
+        "catalog_archive_1",
+        "catalog_archive_10"
+      ],
+      "reason": "fixed category weights"
+    },
+    {
+      "step": 1,
+      "workflow": "react",
+      "available": 99414,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 812,
+        "rag": 1624,
+        "tool_schemas": 1354,
+        "tool_results": 1083,
+        "trajectory": 541
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 408,
+        "tool_schemas": 1146,
+        "tool_results": 305,
+        "trajectory": 0
+      },
+      "selected_ids": [
+        "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:0",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_12",
+        "catalog_archive_7",
+        "return-policy:f594070cedfd:0"
+      ],
+      "omitted_ids": [
+        "catalog_archive_1",
+        "catalog_archive_10"
+      ],
+      "reason": "fixed category weights"
+    },
+    {
+      "step": 2,
+      "workflow": "react",
+      "available": 98658,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 812,
+        "rag": 1624,
+        "tool_schemas": 1354,
+        "tool_results": 1083,
+        "trajectory": 541
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 408,
+        "tool_schemas": 1339,
+        "tool_results": 641,
+        "trajectory": 0
+      },
+      "selected_ids": [
+        "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:0",
+        "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:1",
+        "catalog_archive_0",
+        "catalog_archive_12",
+        "catalog_archive_7",
+        "create_return",
+        "get_order",
+        "return-policy:f594070cedfd:0"
+      ],
+      "omitted_ids": [
+        "calculator"
+      ],
+      "reason": "fixed category weights"
+    },
+    {
+      "step": 3,
+      "workflow": "react",
+      "available": 97704,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 812,
+        "rag": 1624,
+        "tool_schemas": 1354,
+        "tool_results": 1083,
+        "trajectory": 541
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 408,
+        "tool_schemas": 1339,
+        "tool_results": 672,
+        "trajectory": 205
+      },
+      "selected_ids": [
+        "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:0",
+        "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:1",
+        "c8aaefc9-0502-4481-9aa0-80ac05231cde:tool:2",
+        "catalog_archive_0",
+        "catalog_archive_12",
+        "catalog_archive_7",
+        "create_return",
+        "get_order",
+        "return-policy:f594070cedfd:0"
+      ],
+      "omitted_ids": [
+        "calculator"
+      ],
+      "reason": "fixed category weights"
+    }
+  ],
+  "error": null,
+  "source": "provider",
+  "model_id": "qwen/qwen-2.5-72b-instruct",
+  "policy": {
+    "version": "heuristic-v1",
+    "max_steps": 8,
+    "input_budget": 6000,
+    "output_reserve": 1200,
+    "context_window": 100000,
+    "max_candidates": 100,
+    "tool_top_k": 6,
+    "rag_top_k": 6,
+    "recent_steps": 2,
+    "chunk_words": 100,
+    "chunk_overlap": 20,
+    "cache_ttl": 300,
+    "result_characters": 2000,
+    "max_result_bytes": 1000000,
+    "max_document_characters": 200000,
+    "max_history_characters": 200000,
+    "tool_timeout": 15.0,
+    "weights": {
+      "context_memory": 0.15,
+      "rag": 0.3,
+      "tool_schemas": 0.25,
+      "tool_results": 0.2,
+      "trajectory": 0.1
+    }
+  },
+  "started_at": "2026-10-05T11:11:06.733821Z",
+  "finished_at": "2026-10-05T11:11:16.856951Z",
+  "latency_ms": 10122.94859999929
+}

@@ -1,0 +1,7 @@
+[
+  {
+    "case_id": "Calculate 12 + 7",
+    "query": "Calculate 12 + 7",
+    "expected": "19.0"
+  }
+]

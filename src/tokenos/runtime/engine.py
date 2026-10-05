@@ -279,8 +279,8 @@ class AgentRuntime:
         )
         try:
             action: ToolAction | FinalAction = TypeAdapter(Action).validate_json(result.text)
-        except ValidationError:
-            return {"action": None}
+        except ValidationError as e:
+            return {"action": e}
         return {"action": action}
 
     async def _act(self, state: State) -> State:
@@ -289,7 +289,7 @@ class AgentRuntime:
             valid = {c.key for c in state["selected"] if c.category == "rag"}
             if not set(action.evidence_ids) <= valid:
                 return await self._observe(
-                    state, "validation", {}, {"error": "citation ID was not supplied"}, True, False
+                    state, "validation", {}, {"error": f"invalid citation ID {action.evidence_ids}. Valid options: {list(valid)}"}, True, False
                 )
             record = record.model_copy(
                 update={
@@ -300,9 +300,9 @@ class AgentRuntime:
             )
             await self._save(record)
             return {"record": record, "finished": True}
-        if action is None:
+        if isinstance(action, ValidationError):
             return await self._observe(
-                state, "validation", {}, {"error": "invalid action JSON"}, True, False
+                state, "validation", {}, {"error": f"JSON Validation Error: {str(action)}"}, True, False
             )
         exposed = {c.key for c in state["selected"] if c.category == "tool_schemas"}
         if action.name not in exposed:

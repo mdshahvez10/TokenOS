@@ -1,0 +1,432 @@
+{
+  "request": {
+    "task_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793",
+    "query": "Calculate 12 + 7",
+    "history": [],
+    "mode": "adaptive",
+    "budget_tokens": 100000,
+    "ablations": {
+      "full_memory": false,
+      "all_tools": false,
+      "fixed_rag": false,
+      "full_trajectory": false,
+      "no_cache": true,
+      "fixed_workflow": false
+    }
+  },
+  "status": "step_limit",
+  "answer": "",
+  "evidence_ids": [],
+  "observations": [
+    {
+      "step": 0,
+      "tool": "calculator",
+      "arguments": {
+        "a": 12,
+        "b": 7,
+        "operator": "add"
+      },
+      "result": {
+        "value": 19.0
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+      "error": false,
+      "cache_hit": false
+    },
+    {
+      "step": 1,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: []"
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+      "error": true,
+      "cache_hit": false
+    },
+    {
+      "step": 2,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: []"
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:2",
+      "error": true,
+      "cache_hit": false
+    },
+    {
+      "step": 3,
+      "tool": "calculator",
+      "arguments": {
+        "a": 12,
+        "b": 7,
+        "operator": "add"
+      },
+      "result": {
+        "value": 19.0
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:3",
+      "error": false,
+      "cache_hit": false
+    },
+    {
+      "step": 4,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: []"
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:4",
+      "error": true,
+      "cache_hit": false
+    },
+    {
+      "step": 5,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: []"
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:5",
+      "error": true,
+      "cache_hit": false
+    },
+    {
+      "step": 6,
+      "tool": "calculator",
+      "arguments": {
+        "a": 12,
+        "b": 7,
+        "operator": "add"
+      },
+      "result": {
+        "value": 19.0
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:6",
+      "error": false,
+      "cache_hit": false
+    },
+    {
+      "step": 7,
+      "tool": "validation",
+      "arguments": {},
+      "result": {
+        "error": "invalid citation ID. Valid options: []"
+      },
+      "artifact_id": "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:7",
+      "error": true,
+      "cache_hit": false
+    }
+  ],
+  "decisions": [
+    {
+      "step": 0,
+      "workflow": "react",
+      "available": 100000,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 1048,
+        "rag": 524,
+        "tool_schemas": 1747,
+        "tool_results": 1397,
+        "trajectory": 698
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 0,
+        "trajectory": 0
+      },
+      "selected_ids": [
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=0; errors=0"
+    },
+    {
+      "step": 1,
+      "workflow": "react",
+      "available": 99392,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 833,
+        "rag": 416,
+        "tool_schemas": 1388,
+        "tool_results": 2221,
+        "trajectory": 555
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 305,
+        "trajectory": 0
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=1; errors=0"
+    },
+    {
+      "step": 2,
+      "workflow": "react",
+      "available": 98615,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 532,
+        "rag": 266,
+        "tool_schemas": 1775,
+        "tool_results": 2130,
+        "trajectory": 710
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 611,
+        "trajectory": 0
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=2; errors=1"
+    },
+    {
+      "step": 3,
+      "workflow": "react",
+      "available": 97700,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 391,
+        "rag": 195,
+        "tool_schemas": 1957,
+        "tool_results": 2088,
+        "trajectory": 783
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 612,
+        "trajectory": 205
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:2",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=3; errors=2"
+    },
+    {
+      "step": 4,
+      "workflow": "react",
+      "available": 96704,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 357,
+        "rag": 178,
+        "tool_schemas": 1785,
+        "tool_results": 2380,
+        "trajectory": 714
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 611,
+        "trajectory": 409
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:2",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:3",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=4; errors=2"
+    },
+    {
+      "step": 5,
+      "workflow": "react",
+      "available": 95565,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 287,
+        "rag": 143,
+        "tool_schemas": 1917,
+        "tool_results": 2300,
+        "trajectory": 766
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 611,
+        "trajectory": 613
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:2",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:3",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:4",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=5; errors=3"
+    },
+    {
+      "step": 6,
+      "workflow": "react",
+      "available": 94314,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 240,
+        "rag": 120,
+        "tool_schemas": 2005,
+        "tool_results": 2246,
+        "trajectory": 802
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 612,
+        "trajectory": 818
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:2",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:3",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:4",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:5",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=6; errors=4"
+    },
+    {
+      "step": 7,
+      "workflow": "react",
+      "available": 92982,
+      "input_limit": 6000,
+      "output_reserve": 1200,
+      "quotas": {
+        "context_memory": 227,
+        "rag": 113,
+        "tool_schemas": 1893,
+        "tool_results": 2423,
+        "trajectory": 757
+      },
+      "retained": {
+        "context_memory": 0,
+        "rag": 0,
+        "tool_schemas": 1657,
+        "tool_results": 611,
+        "trajectory": 1022
+      },
+      "selected_ids": [
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:0",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:1",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:2",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:3",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:4",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:5",
+        "7ee8fb5e-78d3-4124-8e2e-296af7233793:tool:6",
+        "calculator",
+        "catalog_archive_0",
+        "catalog_archive_1",
+        "catalog_archive_10",
+        "catalog_archive_12",
+        "catalog_archive_7"
+      ],
+      "omitted_ids": [],
+      "reason": "evidence_demand=False; step=7; errors=4"
+    }
+  ],
+  "error": "maximum steps reached",
+  "source": "provider",
+  "model_id": "qwen/qwen-2.5-72b-instruct",
+  "policy": {
+    "version": "heuristic-v1",
+    "max_steps": 8,
+    "input_budget": 6000,
+    "output_reserve": 1200,
+    "context_window": 100000,
+    "max_candidates": 100,
+    "tool_top_k": 6,
+    "rag_top_k": 6,
+    "recent_steps": 2,
+    "chunk_words": 100,
+    "chunk_overlap": 20,
+    "cache_ttl": 300,
+    "result_characters": 2000,
+    "max_result_bytes": 1000000,
+    "max_document_characters": 200000,
+    "max_history_characters": 200000,
+    "tool_timeout": 15.0,
+    "weights": {
+      "context_memory": 0.15,
+      "rag": 0.3,
+      "tool_schemas": 0.25,
+      "tool_results": 0.2,
+      "trajectory": 0.1
+    }
+  },
+  "started_at": "2026-10-05T11:11:47.525725Z",
+  "finished_at": "2026-10-05T11:12:19.824769Z",
+  "latency_ms": 32298.875000000407
+}

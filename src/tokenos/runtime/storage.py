@@ -124,6 +124,8 @@ class MemoryCorpus:
 
 
 class PostgresCorpus:
+    """Corpus backed by Postgres. Uses in-Python lexical search (no pgvector required)."""
+
     def __init__(self, pool: asyncpg.Pool) -> None:
         self.pool = pool
 
@@ -142,27 +144,33 @@ class PostgresCorpus:
             )
             for chunk in chunks:
                 await connection.execute(
-                    """INSERT INTO tokenos_chunks(chunk_id,document_id,body,embedding)
-                    VALUES ($1,$2,$3::jsonb,$4::vector)""",
+                    """INSERT INTO tokenos_chunks(chunk_id,document_id,body)
+                    VALUES ($1,$2,$3::jsonb)""",
                     chunk.chunk_id,
                     document.document_id,
                     chunk.model_dump_json(),
-                    json.dumps(embedding(chunk.title + " " + chunk.text)),
                 )
 
     async def search(self, query: str, limit: int) -> list[Chunk]:
-        rows = await self.pool.fetch(
-            """SELECT body, 1-(embedding <=> $1::vector) AS score FROM tokenos_chunks
-            ORDER BY embedding <=> $1::vector, chunk_id LIMIT $2""",
-            json.dumps(embedding(query)),
-            limit,
-        )
-        return [
-            Chunk.model_validate_json(row["body"]).model_copy(
-                update={"score": max(0.0, float(row["score"]))}
+        rows = await self.pool.fetch("SELECT body FROM tokenos_chunks")
+        query_vector = embedding(query)
+        chunks = [Chunk.model_validate_json(row["body"]) for row in rows]
+        results = [
+            chunk.model_copy(
+                update={
+                    "score": sum(
+                        a * b
+                        for a, b in zip(
+                            query_vector,
+                            embedding(chunk.title + " " + chunk.text),
+                            strict=True,
+                        )
+                    )
+                }
             )
-            for row in rows
+            for chunk in chunks
         ]
+        return sorted(results, key=lambda c: (-c.score, c.chunk_id))[:limit]
 
     async def revision(self) -> str:
         rows = await self.pool.fetch("SELECT revision FROM tokenos_documents ORDER BY document_id")

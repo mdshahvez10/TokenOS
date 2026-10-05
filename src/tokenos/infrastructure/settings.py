@@ -10,10 +10,12 @@ from tokenos.runtime.contracts import Policy
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="TOKENOS_", env_file=".env", extra="ignore")
-    runtime_provider: Literal["sandbox", "gemini"] = "sandbox"
+    runtime_provider: Literal["sandbox", "gemini", "qwen"] = "sandbox"
     gemini_api_key: SecretStr | None = None
     gemini_model: str | None = None
     gemini_base_url: str = "https://generativelanguage.googleapis.com/v1beta"
+    qwen_api_key: SecretStr | None = None
+    qwen_model_id: str = "qwen/qwen3-8b"
     policy_file: Path = Path("config/policy.json")
     sandbox_fixture: Path = Path("config/sandbox.json")
     concurrency: int = Field(default=4, ge=1)
@@ -49,6 +51,8 @@ class Settings(BaseSettings):
             raise ValueError("TOKENOS_DATABASE_URL is required for the postgres backend")
         if self.runtime_provider == "gemini" and (not self.gemini_api_key or not self.gemini_model):
             raise ValueError("Gemini requires model and API key")
+        if self.runtime_provider == "qwen" and not self.qwen_api_key:
+            raise ValueError("Qwen requires TOKENOS_QWEN_API_KEY (OpenRouter API key)")
         if self.pool_min > self.pool_max:
             raise ValueError("pool_min cannot exceed pool_max")
         return self
